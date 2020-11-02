@@ -24,7 +24,7 @@ class CreateClassController
                 $locationErrMess = 'Class location is required';
             }
             if(empty($classNameErrMess) && empty($locationErrMess)){
-                $connection->insertData($_POST['classname'], $_POST['location']);
+                $connection->insertClass($_POST['classname'], $_POST['location']);
             }
         }
 
