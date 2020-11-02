@@ -4,12 +4,12 @@
 class Teacher
 {
     private string $name;
-    private string $email;
+    private string $location;
 
-    public function __construct(string $name, string $email)
+    public function __construct(string $name, string $location)
     {
         $this->name = $name;
-        $this->email = $email;
+        $this->location = $location;
     }
 
     public function getName(): string
@@ -17,8 +17,8 @@ class Teacher
         return $this->name;
     }
 
-    public function getEmail(): string
+    public function getLocation(): string
     {
-        return $this->email;
+        return $this->location;
     }
 }
