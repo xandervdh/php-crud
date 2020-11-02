@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require 'moddel/Connection.php';
 class ClassLoader
 {
     private array $classes = [];

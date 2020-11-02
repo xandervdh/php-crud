@@ -36,7 +36,7 @@ class Connection {
 
     public function getClassId($name)
     {
-        $handler = $this->pdo->prepare('SELECT id FROM class WHERE name = :name');
+        $handler = $this->pdo->prepare('SELECT id FROM classes WHERE name = :name');
         $handler->bindValue(':name', $name);
         $handler->execute();
         return $handler->fetch();
@@ -44,7 +44,7 @@ class Connection {
 
     public function getTeacher($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email FROM teachers WHERE techers_id_fk = :id');
+        $handler = $this->pdo->prepare('SELECT name, email FROM teachers WHERE teachers_id_fk = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
