@@ -26,5 +26,22 @@ class ClassModel
 
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+ic function getTeacher(): Teacher
+    {
+        return $this->teacher;
+    }
+
+    public function getStudents(): array
+    {
+        return $this->students;
+    }
 }
