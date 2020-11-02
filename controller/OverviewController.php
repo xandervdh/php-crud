@@ -5,10 +5,42 @@ class OverviewController {
     public function render()
     {
 
-        $classLoader = new ClassLoader();
-        $classes = $classLoader->getClasses();
+        if($_GET["page"]=="class"){
+            $view = 'view/overview.php';
+        }
 
-        require 'view/overview.php';
+        else if ($_GET["page"]=="student"){
+            $view = 'view/studentOverview.php';
+        }
+
+        else {
+            $view = 'view/teacherOverview.php';
+        }
+
+        $overview = [];
+        $connection = new Connection();
+
+        if($_GET["page"]=="class"){
+
+            $classLoader = new ClassLoader();
+            $overview = $classLoader->getClasses();
+
+        }
+
+        else if ($_GET["page"]=="student"){
+
+
+
+        }
+
+        else {
+
+           $overview = $connection->getTeachers();
+
+        }
+
+
+        require $view;
 
     }
 

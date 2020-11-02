@@ -6,7 +6,7 @@
 
             <a href="http://php-crud.local/?page=new" class='btn btn-primary'>Create new</a>
 
-            <?php foreach ($classes as $class) : ?>
+            <?php foreach ($overview as $class) : ?>
 
                 <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
                 <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
