@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=);
 
-require 'moddel/Student.php';
-require 'moddel/Connection.php';
-require 'moddel/Teacher.php';
-
 class ClassModel
 {
     private Connection $connection;
