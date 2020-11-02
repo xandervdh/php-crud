@@ -111,4 +111,12 @@ class Connection {
         $handler->execute();
         return $handler->fetch();
     }
+
+    public function getStudentId($name)
+    {
+        $handler = $this->pdo->prepare('SELECT id FROM students WHERE :name = name');
+        $handler->bindValue(':name', $name);
+        $handler->execute();
+        return $handler->fetch();
+    }
 }
