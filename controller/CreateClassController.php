@@ -3,7 +3,7 @@
 
 class CreateClassController
 {
-    public function validateFields()
+    public function render()
     {
         global $className, $location;
         global $classNameErrMess, $locationErrMess;
@@ -23,6 +23,8 @@ class CreateClassController
                 $locationErrMess = 'Class location is required';
             }
         }
+
+        require 'view/overview.php';
     }
 
 }
