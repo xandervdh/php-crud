@@ -10,7 +10,7 @@ class ClassLoader
         $connection = new Connection();
         $classes = $connection->getClasses();
         foreach ($classes as $class){
-            array_push($this->classes, new ClassModel($class["name"], $class["location"]));
+            array_push($this->classes, new ClassModel(intval($class['id']), $class["name"], $class["location"]));
         }
     }
 

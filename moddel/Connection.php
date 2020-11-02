@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -52,7 +52,7 @@ class Connection {
 
     public function getClasses()
     {
-        $handler = $this->pdo->prepare('SELECT name, location FROM classes');
+        $handler = $this->pdo->prepare('SELECT id, name, location FROM classes');
         $handler->execute();
         return $handler->fetchAll();
     }
@@ -92,4 +92,11 @@ class Connection {
 
     }
 
+    public function getTeacherProfile($id)
+    {
+        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM teachers WHERE :id = id');
+        $handler->bindValue(':id', $id);
+        $handler->execute();
+        return $handler->fetch();
+    }
 }
