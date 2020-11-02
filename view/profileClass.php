@@ -5,12 +5,12 @@
     </form>
 
 <?php
-echo 'name: ' . $class['name'] . '<br>';
-echo 'location: ' . $class['location'] . '<br>';
-echo 'teacher: ' . $teacher['name'] . '<br>';
+echo 'name: ' . $profile->getName() . '<br>';
+echo 'location: ' . $profile->getLocation() . '<br>';
+echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
 echo 'students: <br>';
-foreach ($students as $student){
-    echo '- ' . $student['name'] . '<br>';
+foreach ($profile->getStudents() as $student){
+    echo '- ' . $student->get . '<br>';
 }
 ?>
 
