@@ -54,6 +54,14 @@ class Connection {
     {
         $handler = $this->pdo->prepare('SELECT name, location FROM classes');
         $handler->execute();
+        return $handler->fetchAll();
+    }
+
+    public function getClass($id)
+    {
+        $handler = $this->pdo->prepare('SELECT name, location FROM classes WHERE id = :id');
+        $handler->bindValue(':id', $id);
+        $handler->execute();
         return $handler->fetch();
     }
 }
