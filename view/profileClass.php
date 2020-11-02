@@ -1,5 +1,5 @@
 <?php require 'includes/header.php'; ?>
-
+    <a href="http://crud.local/">back to homepage</a>
     <form method="post">
         <input class="btn btn-primary" type="submit" value="Delete Class">
     </form>
