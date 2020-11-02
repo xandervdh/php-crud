@@ -5,11 +5,10 @@
     </form>
 
 <?php
-echo 'name: ' . $student['name'] . '<br>';
-echo 'email: ' . $student['location'] . '<br>';
-echo 'class: ' . $class['name'] . '<br>';
+echo 'name: ' . $profile['name'] . '<br>';
+echo 'email: ' . $profile['email'] . '<br>';
 echo 'teacher: ' . $teacher['name'] . '<br>';
-echo '<br>';
+echo 'class: ' . $class['name'] . '<br>';
 ?>
 
 <?php require 'includes/footer.php';

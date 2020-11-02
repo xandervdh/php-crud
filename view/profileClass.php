@@ -10,7 +10,7 @@ echo 'location: ' . $profile->getLocation() . '<br>';
 echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
 echo 'students: <br>';
 foreach ($profile->getStudents() as $student){
-    echo '- ' . $student->get . '<br>';
+    echo '- ' . $student->getname() . '<br>';
 }
 ?>
 
