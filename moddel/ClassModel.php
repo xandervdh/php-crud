@@ -18,7 +18,7 @@ class ClassModel
         $this->name = $name;
         $this->location = $location;
         $id = $this->connection->getClassId($this->name);
-        $students = $this->connection->getStudents($id);
+        $students = $this->connection->getStudents($id['id']);
         foreach ($students as $student){
             array_push($this->students, new Student($student['name'], $student['email']));
         }
