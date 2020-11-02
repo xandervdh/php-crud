@@ -65,7 +65,7 @@ class Connection {
         return $handler->fetch();
     }
 
-    public function insertData($name, $location)
+    public function insertClass($name, $location)
     {
         $handler = $this->pdo->prepare('INSERT INTO classes (name, location) VALUES (:classname, :location)');
         $handler->bindValue(':classname', $name);
@@ -73,4 +73,23 @@ class Connection {
         $handler->execute();
 
     }
+
+    public function insertStudent($name, $email)
+    {
+        $handler = $this->pdo->prepare('INSERT INTO classes (name, email) VALUES (:studentname, :email)');
+        $handler->bindValue(':classname', $name);
+        $handler->bindValue(':location', $email);
+        $handler->execute();
+
+    }
+
+    public function insertTeacher($name, $email)
+    {
+        $handler = $this->pdo->prepare('INSERT INTO classes (name, email) VALUES (:teachername, :email)');
+        $handler->bindValue(':classname', $name);
+        $handler->bindValue(':location', $email);
+        $handler->execute();
+
+    }
+
 }

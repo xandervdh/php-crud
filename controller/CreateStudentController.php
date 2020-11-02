@@ -29,7 +29,7 @@ class CreateStudentController
             }
         }
 
-        require 'view/createstudent.php';
+        require 'view/createStudent.php';
     }
 
 

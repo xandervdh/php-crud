@@ -29,7 +29,7 @@ class CreateTeacherController
             }
         }
 
-        require 'view/createteacher.php';
+        require 'view/createTeacher.php';
     }
 
 }
