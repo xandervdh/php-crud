@@ -16,7 +16,7 @@
 
                 }
             ?>
-
+            <hr>
             <?php endforeach;?>
 
         </div>

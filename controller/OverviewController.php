@@ -6,7 +6,7 @@ class OverviewController {
     {
 
         $classLoader = new ClassLoader();
-        $class = $classLoader->getClasses();
+        $classes = $classLoader->getClasses();
 
         require 'view/overview.php';
 

@@ -21,7 +21,7 @@ class ClassModel
             array_push($this->students, new Student($student['name'], $student['email']));
         }
 
-        $teacher = $this->connection->getTeacher($id);
+        $teacher = $this->connection->getTeacher($id['id']);
         $this->teacher = new Teacher($teacher['name'], $teacher['email']);
 
     }

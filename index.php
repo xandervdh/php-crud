@@ -7,7 +7,9 @@ error_reporting(E_ALL);
 
 require 'moddel/ClassLoader.php';
 require 'moddel/ClassModel.php';
-require "moddel/Connection.php";
+require 'moddel/Connection.php';
+require 'moddel/Student.php';
+require 'moddel/Teacher.php';
 
 if (isset($_GET['page'])) {
     require 'controller/CreateClassController.php';
