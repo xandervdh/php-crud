@@ -11,7 +11,7 @@
             <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
             <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
 
-            <p>Name:<?php echo $teacher['name'];?> </p>
+            <p>Name: <a href="http://crud.local/?profile=teacher&user=<?php echo $teacher['id'] ?>"><?php echo $teacher['name'];?></a></p>
 
             <p>Email:<?php echo $teacher['email'];?> </p>
 
@@ -19,9 +19,7 @@
             $students = $connection->getStudents($teacher['classes_id']);
 
             foreach ($students as $student){
-
-                echo $student['name'] . "<br>";
-
+                echo "<a href='http://crud.local/?profile=student&user=" . $student['id'] . "'>" . $student['name'] . "</a><br>";
             }
             ?>
             <hr>

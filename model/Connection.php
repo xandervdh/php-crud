@@ -28,7 +28,7 @@ class Connection {
 
     public function getStudents($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email FROM students WHERE classes_id = :id');
+        $handler = $this->pdo->prepare('SELECT id, name, email FROM students WHERE classes_id = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetchAll();
@@ -71,7 +71,6 @@ class Connection {
         $handler->bindValue(':classname', $name);
         $handler->bindValue(':location', $location);
         $handler->execute();
-
     }
 
     public function insertStudent($name, $email)
@@ -80,7 +79,6 @@ class Connection {
         $handler->bindValue(':classname', $name);
         $handler->bindValue(':location', $email);
         $handler->execute();
-
     }
 
     public function insertTeacher($name, $email)
@@ -89,7 +87,6 @@ class Connection {
         $handler->bindValue(':classname', $name);
         $handler->bindValue(':location', $email);
         $handler->execute();
-
     }
 
     public function getTeacherProfile($id)
@@ -102,7 +99,7 @@ class Connection {
 
     public function getTeachers()
     {
-        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM teachers');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM teachers');
         $handler->execute();
         return $handler->fetchAll();
     }

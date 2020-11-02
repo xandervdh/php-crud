@@ -5,21 +5,24 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-require 'moddel/ClassLoader.php';
-require 'moddel/ClassModel.php';
-require 'moddel/Connection.php';
-require 'moddel/Student.php';
-require 'moddel/Teacher.php';
+require 'model/ClassLoader.php';
+require 'model/ClassModel.php';
+require 'model/Connection.php';
+require 'model/Student.php';
+require 'model/Teacher.php';
 
 if (isset($_GET['create'])) {
     require 'controller/CreateClassController.php';
     $controller = new CreateClassController();
-} elseif (isset($_GET['user'])) {
+} elseif (isset($_GET['profile'])) {
     require 'controller/ProfileController.php';
     $controller = new ProfileController();
 } elseif (isset($_GET['page'])) {
     require 'controller/OverviewController.php';
     $controller = new OverviewController();
+} else {
+    require 'controller/HomeController.php';
+    $controller = new HomeController();
 }
 
 $controller->render();
