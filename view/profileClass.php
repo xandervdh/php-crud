@@ -1,5 +1,9 @@
 <?php require 'includes/header.php'; ?>
 
+    <form method="post">
+        <input type="submit" value="Delete Class">
+    </form>
+
 <?php
 echo 'name: ' . $class['name'] . '<br>';
 echo 'location: ' . $class['location'] . '<br>';
