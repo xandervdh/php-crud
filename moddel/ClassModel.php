@@ -3,7 +3,7 @@ declare(strict_types=);
 
 require 'moddel/Student.php';
 require 'moddel/Connection.php';
-require 'Model/Teacherphp';
+require 'moddel/Teacher.php';
 
 class ClassModel
 {

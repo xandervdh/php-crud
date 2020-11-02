@@ -44,7 +44,7 @@ class Connection {
 
     public function getTeacher($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email FROM teachers WHERE id = :id');
+        $handler = $this->pdo->prepare('SELECT name, email FROM teachers WHERE techers_id_fk = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
