@@ -49,4 +49,11 @@ class Connection {
         $handler->execute();
         return $handler->fetch();
     }
+
+    public function getClasses()
+    {
+        $handler = $this->pdo->prepare('SELECT name, location FROM classes');
+        $handler->execute();
+        return $handler->fetch();
+    }
 }
