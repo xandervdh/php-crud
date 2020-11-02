@@ -24,7 +24,7 @@ class CreateClassController
             }
         }
 
-        require 'view/overview.php';
+        require 'view/create.php';
     }
 
 }
