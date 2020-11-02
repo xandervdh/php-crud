@@ -5,6 +5,7 @@ class CreateClassController
 {
     public function render()
     {
+        $connection = new Connection();
         global $className, $location;
         global $classNameErrMess, $locationErrMess;
 
@@ -21,6 +22,9 @@ class CreateClassController
 
             } else {
                 $locationErrMess = 'Class location is required';
+            }
+            if(empty($classNameErrMess) && empty($locationErrMess)){
+                $connection->insertData($_POST['classname'], $_POST['location']);
             }
         }
 
