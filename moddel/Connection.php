@@ -25,4 +25,20 @@ class Connection {
 
         return new PDO('mysql:host=' . $dbhost . ';dbname=' . $db, $dbuser, $dbpass, $driverOptions);
     }
+
+    public function getStudents($id)
+    {
+        $handler = $this->pdo->prepare('SELECT name, email FROM students WHERE student_id_fk = :id');
+        $handler->bindValue(':id', $id);
+        $handler->execute();
+        return $handler->fetchAll();
+    }
+
+    public function getClassId($name)
+    {
+        $handler = $this->pdo->prepare('SELECT id FROM class WHERE name = :name');
+        $handler->bindValue(':name', $name);
+        $handler->execute();
+        return $handler->fetch();
+    }
 }
