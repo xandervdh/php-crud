@@ -17,7 +17,7 @@ class ClassModel
 
         $id = $this->connection->getClassId($this->name);
         $students = $this->connection->getStudents($id['id']);
-        foreach ($students as $student){
+        foreach ($students as $student) {
             array_push($this->students, new Student($student['name'], $student['email']));
         }
 
@@ -26,5 +26,23 @@ class ClassModel
 
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    public function getTeacher(): Teacher
+    {
+        return $this->teacher;
+    }
+
+    public function getStudents(): array
+    {
+        return $this->students;
+    }
 }
