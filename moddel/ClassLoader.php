@@ -15,5 +15,8 @@ class ClassLoader
         }
     }
 
-
+    public function getClasses(): array
+    {
+        return $this->classes;
+    }
 }
