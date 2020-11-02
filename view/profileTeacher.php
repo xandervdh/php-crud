@@ -5,7 +5,6 @@
     </form>
 
 <?php
-echo $profile['name'];
 echo 'name: ' . $profile['name'] . '<br>';
 echo 'email: ' . $profile['email'] . '<br>';
 echo 'students: <br>';
