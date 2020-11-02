@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "Becode@123";
+        $dbpass = "becode123";
         $db = "crud";
 
         $driverOptions = [
@@ -63,5 +63,14 @@ class Connection {
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
+    }
+
+    public function insertData($name, $location)
+    {
+        $handler = $this->pdo->prepare('INSERT INTO classes (name, location) VALUES (:classname, :location)');
+        $handler->bindValue(':classname', $name);
+        $handler->bindValue(':location', $location);
+        $handler->execute();
+
     }
 }
