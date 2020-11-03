@@ -74,7 +74,7 @@ class CreateClassController
                     $classErrMess = 'Class is required';
                 }
 
-                if (empty($classErrMess) && empty($emailErrMess) && empty($studentNameErrMess)) {
+                if (empty($studentNameErrMess) && empty($emailErrMess) && empty($classErrMess)) {
                     $this->connection->insertStudent($_POST['studentname'], $_POST['email'], $_POST['class']);
                 }
 
@@ -101,8 +101,8 @@ class CreateClassController
                     $classErrMess = 'Class is required';
                 }
 
-                if (empty($teacherNameErrMess) && empty($emailErrMess)) {
-                    $this->connection->insertTeacher($_POST['teachername'], $_POST['email']);
+                if (empty($teacherNameErrMess) && empty($emailErrMess) && empty($classErrMess)) {
+                    $this->connection->insertTeacher($_POST['teachername'], $_POST['email'], $_POST['class']);
                 }
             }
         }
