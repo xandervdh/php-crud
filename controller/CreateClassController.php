@@ -3,6 +3,17 @@
 
 class CreateClassController
 {
+    private $connection;
+
+    /**
+     * CreateClassController constructor.
+     */
+    public function __construct()
+    {
+        $this->connection = new Connection();
+    }
+
+
     public function viewChanger()
     {
         if ($_GET['create'] == 'class') {
@@ -19,7 +30,6 @@ class CreateClassController
     public function render()
     {
         $view = $this->viewChanger();
-        $connection = new Connection();
         global $className, $location, $class, $studentName, $email, $teacherName;
         global $classNameErrMess, $locationErrMess, $classErrMess, $studentNameErrMess, $emailErrMess, $teacherNameErrMess;
 
@@ -38,7 +48,7 @@ class CreateClassController
                     $locationErrMess = 'Class location is required';
                 }
                 if (empty($classNameErrMess) && empty($locationErrMess)) {
-                    $connection->insertClass($_POST['classname'], $_POST['location']);
+                    $this->connection->insertClass($_POST['classname'], $_POST['location']);
                 }
 
             } elseif ($_GET['create'] == 'student') {
@@ -51,7 +61,7 @@ class CreateClassController
 
                 if (!empty($_POST['email'])) {
                     $email = $_POST['email'];
-                    $this->validateEmail($email);
+                    $this->validateEmail($email, 'students');
 
                 } else {
                     $emailErrMess = 'Email is required';
@@ -65,7 +75,7 @@ class CreateClassController
                 }
 
                 if (empty($classNameErrMess) && empty($locationErrMess)) {
-                    $connection->insertStudent($_POST['studentname'], $_POST['email']);
+                    $this->connection->insertStudent($_POST['studentname'], $_POST['email'], $_POST['class']);
                 }
 
             } else {
@@ -78,7 +88,7 @@ class CreateClassController
 
                 if (!empty($_POST['email'])) {
                     $email = $_POST['email'];
-                    $this->validateEmail($email);
+                    $this->validateEmail($email, 'teachers');
 
                 } else {
                     $emailErrMess = 'Email is required';
@@ -92,7 +102,7 @@ class CreateClassController
                 }
 
                 if (empty($teacherNameErrMess) && empty($emailErrMess)) {
-                    $connection->insertTeacher($_POST['teachername'], $_POST['email']);
+                    $this->connection->insertTeacher($_POST['teachername'], $_POST['email']);
                 }
             }
         }
@@ -100,12 +110,16 @@ class CreateClassController
         require $view;
     }
 
-    public function validateEmail($email)
+    public function validateEmail($email, $table)
     {
         global $emailErrMess;
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErrMess = 'Email is invalid';
 
+        }else{
+            if(!$this->connection->checkEmailInDB($email, $table)){
+                $emailErrMess = 'Email is already in use';
+            }
         }
     }
 }
