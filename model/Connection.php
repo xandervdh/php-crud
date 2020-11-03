@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -123,6 +123,16 @@ class Connection {
     public function getAllStudents()
     {
         $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM students');
+        $handler->execute();
+        return $handler->fetchAll();
+    }
+
+
+    public function Delete($id, $table)
+    {
+        $handler = $this->pdo->prepare('DELETE FROM :table WHERE id = :id ');
+        $handler->bindValue(':id', $id);
+        $handler->bindValue(':table', $table);
         $handler->execute();
         return $handler->fetchAll();
     }
