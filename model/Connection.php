@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "Becode@123";
+        $dbpass = "becode123";
         $db = "crud";
 
         $driverOptions = [
@@ -131,11 +131,32 @@ class Connection {
 
     public function Delete($id, $table)
     {
-        $handler = $this->pdo->prepare('DELETE FROM :table WHERE id = :id ');
+
+        if($table == "class"){
+            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+            $handler = $this->pdo->prepare('DELETE classes_id FROM students WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+            $handler = $this->pdo->prepare('DELETE classes_id FROM teachers WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+
+        }
+        elseif($table == "student"){
+            $handler = $this->pdo->prepare('DELETE FROM students WHERE id = :id ');
+        }
+        else {
+            $handler = $this->pdo->prepare('DELETE FROM teachers WHERE id = :id ');
+        }
+
         $handler->bindValue(':id', $id);
-        $handler->bindValue(':table', $table);
         $handler->execute();
-        return $handler->fetchAll();
+
     }
 
     public function checkEmailInDB($email, $table)

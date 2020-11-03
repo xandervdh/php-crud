@@ -2,6 +2,15 @@
 declare(strict_types=1);
 
 class OverviewController {
+
+    private $connection;
+
+    public function __construct()
+    {
+
+        $this->connection = new Connection();
+    }
+
     public function render()
     {
 
@@ -18,7 +27,7 @@ class OverviewController {
         }
 
         $overview = [];
-        $connection = new Connection();
+
 
         if($_GET["page"]=="class"){
 
@@ -29,13 +38,13 @@ class OverviewController {
 
         elseif ($_GET["page"]=="student"){
 
-            $overview = $connection->getAllStudents();
+            $overview = $this->connection->getAllStudents();
 
         }
 
         else {
 
-           $overview = $connection->getTeachers();
+           $overview = $this->connection->getTeachers();
 
 
         }
@@ -52,8 +61,32 @@ class OverviewController {
             $id = $_POST["id"];
             $entity = $_GET["page"];
 
+            if($entity == "class"){
+                $table = "classes";
+            }
 
+            //if you remove a class, make sure to remove the link between students and class
 
+            elseif($entity == "student"){
+                $table = "students";
+            }
+
+            //teacher cannot be removed if he is still assigned to a class
+
+           else{
+
+               //if teacher class id is not class id
+
+                $table = "teachers";
+
+                $teacherProfile = $this->connection->getTeacherProfile($id);
+
+                if(!isset($teacherProfile['classes_id'])){
+                    exit;
+                }
+            }
+
+            $this->connection->Delete($id, $table);
 
 
         }
