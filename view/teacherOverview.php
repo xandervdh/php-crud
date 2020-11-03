@@ -4,11 +4,11 @@
 
     <div id="row">
 
-        <a href="http://php-crud.local/?page=new" class='btn btn-primary'>Create new</a>
+        <a href="http://crud.local/?create=teacher" class='btn btn-primary'>Create new</a>
 
-        <?php foreach ($overview as $teacher) : ?>
+        <?php foreach ($this->overview as $teacher) : ?>
 
-            <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
+            <a href="http://crud.local/?page=edit" class='btn btn-primary'>Edit</a>
 
             <form method ="post">
                 <input type="submit" value="delete" name="action" class='btn btn-primary'>
@@ -21,12 +21,10 @@
 
             <?php
 
-            $connection = new Connection();
-
-            $class = $connection->getClass($teacher['classes_id']);
+            $class = $this->connection->getClass($teacher['classes_id']);
             echo "class: " . $class["name"] . "</br>";
 
-            $students = $connection->getStudents($teacher['classes_id']);
+            $students = $this->connection->getStudents($teacher['classes_id']);
 
             foreach ($students as $student){
                 echo "<a href='http://crud.local/?profile=student&user=" . $student['id'] . "'>" . $student['name'] . "</a><br>";

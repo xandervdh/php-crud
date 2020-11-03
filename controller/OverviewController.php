@@ -4,6 +4,8 @@ declare(strict_types=1);
 class OverviewController {
 
     private $connection;
+    private $overview = [];
+    private $id;
 
     public function __construct()
     {
@@ -26,26 +28,26 @@ class OverviewController {
             $view = 'view/teacherOverview.php';
         }
 
-        $overview = [];
+
 
 
         if($_GET["page"]=="class"){
 
             $classLoader = new ClassLoader();
-            $overview = $classLoader->getClasses();
+            $this->overview = $classLoader->getClasses();
             $this->Delete();
         }
 
         elseif ($_GET["page"]=="student"){
 
-            $overview = $this->connection->getAllStudents();
+            $this->overview = $this->connection->getAllStudents();
             $this->Delete();
 
         }
 
         else {
 
-           $overview = $this->connection->getTeachers();
+           $this->overview = $this->connection->getTeachers();
            $this->Delete();
            
         }
@@ -59,35 +61,25 @@ class OverviewController {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-            $id = $_POST["id"];
+            $this->id = $_POST["id"];
             $entity = $_GET["page"];
-
-            if($entity == "class"){
-                $table = "classes";
-            }
-
-            //if you remove a class, make sure to remove the link between students and class
-
-            elseif($entity == "student"){
-                $table = "students";
-            }
 
             //teacher cannot be removed if he is still assigned to a class
 
-           else{
+           if ($entity =='teacher'){
 
                //if teacher class id is not class id
 
-                $table = "teachers";
 
-                $teacherProfile = $this->connection->getTeacherProfile($id);
+
+                $teacherProfile = $this->connection->getTeacherProfile($this->id);
 
                 if(!isset($teacherProfile['classes_id'])){
                     exit;
                 }
             }
 
-            $this->connection->Delete($id, $table);
+            $this->connection->Delete($this->id, $entity);
 
 
         }

@@ -6,7 +6,7 @@
 
         <a href="http://php-crud.local/?page=new" class='btn btn-primary'>Create new</a>
 
-        <?php foreach ($overview as $student) : ?>
+        <?php foreach ($this->overview as $student) : ?>
 
             <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
             <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
@@ -15,11 +15,11 @@
 
             <p>Email:<?php echo $student['email'];?> </p>
 
-            <?php $class = $connection->getClass($overview['classes_id']);
+            <?php $class = $this->connection->getClass($student['classes_id']);
             echo "<a href='http://crud.local/?profile=class&user=" . $class['id'] . "'>" . $class['name'] . "</a><br>";
             ?>
 
-            <?php $teacher = $connection->getTeacher($overview['classes_id']);
+            <?php $teacher = $this->connection->getTeacher($student['classes_id']);
             echo "<a href='http://crud.local/?profile=teacher&user=" . $teacher['id'] . "'>" . $teacher['name'] . "</a><br>";
             ?>
 
