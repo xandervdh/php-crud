@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -73,11 +73,12 @@ class Connection {
         $handler->execute();
     }
 
-    public function insertStudent($name, $email)
+    public function insertStudent($name, $email, $id)
     {
-        $handler = $this->pdo->prepare('INSERT INTO classes (name, email) VALUES (:studentname, :email)');
-        $handler->bindValue(':classname', $name);
-        $handler->bindValue(':location', $email);
+        $handler = $this->pdo->prepare('INSERT INTO students (name, email, classes_id) VALUES (:studentname, :email, :id)');
+        $handler->bindValue(':studentname', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
         $handler->execute();
     }
 
@@ -135,6 +136,21 @@ class Connection {
         $handler->bindValue(':table', $table);
         $handler->execute();
         return $handler->fetchAll();
+    }
+
+    public function checkEmailInDB($email, $table)
+    {
+        if($table == 'students'){
+            $handler = $this->pdo->prepare('SELECT email FROM students WHERE email = :email');
+
+        } else{
+            $handler = $this->pdo->prepare('SELECT email FROM teachers WHERE email = :email');
+        }
+
+        $handler->bindValue(':email', $email);
+
+        return $handler->execute();
+
     }
 
 }

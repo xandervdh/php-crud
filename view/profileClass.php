@@ -7,6 +7,7 @@
 <?php
 echo 'name: ' . $profile->getName() . '<br>';
 echo 'location: ' . $profile->getLocation() . '<br>';
+echo "<a href='http://crud.local/?profile=teacher&user=" . $profile->getTeacher()->getId() . "'>" . $profile->getName() . "</a><br>";
 echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
 echo 'students: <br>';
 foreach ($profile->getStudents() as $student){
