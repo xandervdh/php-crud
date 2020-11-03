@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -28,7 +28,7 @@ class Connection {
 
     public function getStudents($id)
     {
-        $handler = $this->pdo->prepare('SELECT id, name, email FROM students WHERE classes_id = :id');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM students WHERE classes_id = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetchAll();
@@ -44,7 +44,7 @@ class Connection {
 
     public function getTeacher($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email FROM teachers WHERE classes_id = :id');
+        $handler = $this->pdo->prepare('SELECT id, name, email FROM teachers WHERE classes_id = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
@@ -59,7 +59,7 @@ class Connection {
 
     public function getClass($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, location FROM classes WHERE id = :id');
+        $handler = $this->pdo->prepare('SELECT id, name, location FROM classes WHERE id = :id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
@@ -134,15 +134,15 @@ class Connection {
     {
 
         if($table == "class"){
+            $handler = $this->pdo->prepare('UPDATE students SET classes_id = null WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+            $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = null WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
             $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
-
-            $handler->bindValue(':id', $id);
-            $handler->execute();
-            $handler = $this->pdo->prepare('DELETE classes_id FROM students WHERE classes_id = :id ');
-
-            $handler->bindValue(':id', $id);
-            $handler->execute();
-            $handler = $this->pdo->prepare('DELETE classes_id FROM teachers WHERE classes_id = :id ');
 
             $handler->bindValue(':id', $id);
             $handler->execute();
