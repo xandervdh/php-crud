@@ -127,4 +127,14 @@ class Connection {
         return $handler->fetchAll();
     }
 
+
+    public function Delete($id, $table)
+    {
+        $handler = $this->pdo->prepare('DELETE FROM :table WHERE id = :id ');
+        $handler->bindValue(':id', $id);
+        $handler->bindValue(':table', $table);
+        $handler->execute();
+        return $handler->fetchAll();
+    }
+
 }
