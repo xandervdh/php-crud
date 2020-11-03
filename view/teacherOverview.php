@@ -20,6 +20,12 @@
             <p>Email:<?php echo $teacher['email'];?> </p>
 
             <?php
+
+            $connection = new Connection();
+
+            $class = $connection->getClass($teacher['classes_id']);
+            echo "class: " . $class["name"] . "</br>";
+
             $students = $connection->getStudents($teacher['classes_id']);
 
             foreach ($students as $student){
