@@ -16,7 +16,6 @@ class CreateClassController
         }
     }
 
-
     public function render()
     {
         $view = $this->viewChanger();
@@ -52,6 +51,7 @@ class CreateClassController
 
                 if (!empty($_POST['email'])) {
                     $email = $_POST['email'];
+                    $this->validateEmail($email);
 
                 } else {
                     $emailErrMess = 'Email is required';
@@ -78,6 +78,7 @@ class CreateClassController
 
                 if (!empty($_POST['email'])) {
                     $email = $_POST['email'];
+                    $this->validateEmail($email);
 
                 } else {
                     $emailErrMess = 'Email is required';
@@ -99,4 +100,12 @@ class CreateClassController
         require $view;
     }
 
+    public function validateEmail($email)
+    {
+        global $emailErrMess;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErrMess = 'Email is invalid';
+
+        }
+    }
 }
