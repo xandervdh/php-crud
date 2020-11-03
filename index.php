@@ -20,7 +20,10 @@ if (isset($_GET['create'])) {
 } elseif (isset($_GET['page'])) {
     require 'controller/OverviewController.php';
     $controller = new OverviewController();
-} else {
+}elseif (isset($_GET['edit'])){
+    require 'controller/EditController.php';
+    $controller = new EditController();
+}else {
     require 'controller/HomeController.php';
     $controller = new HomeController();
 }
