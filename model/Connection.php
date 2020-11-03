@@ -82,11 +82,12 @@ class Connection {
         $handler->execute();
     }
 
-    public function insertTeacher($name, $email)
+    public function insertTeacher($name, $email, $id)
     {
-        $handler = $this->pdo->prepare('INSERT INTO classes (name, email) VALUES (:teachername, :email)');
-        $handler->bindValue(':classname', $name);
-        $handler->bindValue(':location', $email);
+        $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
+        $handler->bindValue(':teachername', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
         $handler->execute();
     }
 
@@ -169,9 +170,16 @@ class Connection {
         }
 
         $handler->bindValue(':email', $email);
-
         return $handler->execute();
+    }
 
+    public function editProfile()
+    {
+        $handler = $this->pdo->prepare('UPDATE students SET name = :name, email = :email,  WHERE id = :id');
+        $handler->bindValue(':name', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
+        $handler->execute();
     }
 
 }
