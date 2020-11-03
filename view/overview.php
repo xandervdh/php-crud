@@ -12,7 +12,7 @@
                 <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
 
                 <p>Name:
-                    <a href="http://crud.local/?profile=teacher&user=<?php echo $class->getId(); ?>"><?php echo $class->getName(); ?></a>
+                    <a href="http://crud.local/?profile=class&user=<?php echo $class->getId(); ?>"><?php echo $class->getName(); ?></a>
                 </p>
 
                 <p>Location: <?php echo $class->getLocation(); ?> </p>
