@@ -170,7 +170,8 @@ class Connection {
         }
 
         $handler->bindValue(':email', $email);
-        return $handler->execute();
+        $handler->execute();
+        return $handler->fetch();
     }
 
     public function editProfile()
