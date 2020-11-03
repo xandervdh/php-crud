@@ -9,7 +9,11 @@
         <?php foreach ($overview as $teacher) : ?>
 
             <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
-            <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
+
+            <form method ="post">
+                <input type="submit" value="delete" name="action" class='btn btn-primary'>
+                <input type="hidden" name="id" value="<?php echo $teacher['id'] ?>">
+            </form>
 
             <p>Name: <a href="http://crud.local/?profile=teacher&user=<?php echo $teacher['id'] ?>"><?php echo $teacher['name'];?></a></p>
 

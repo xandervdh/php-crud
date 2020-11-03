@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 class OverviewController {
 
-    private $connection = new Connection();
+    private $connection;
+
+    public function __construct()
+    {
+
+        $this->connection = new Connection();
+    }
 
     public function render()
     {
-
 
         if($_GET["page"]=="class"){
             $view = 'view/overview.php';
@@ -74,6 +79,11 @@ class OverviewController {
 
                 $table = "teachers";
 
+                $teacherProfile = $this->connection->getTeacherProfile($id);
+
+                if(!isset($teacherProfile['classes_id'])){
+                    exit;
+                }
             }
 
             $this->connection->Delete($id, $table);
