@@ -74,7 +74,7 @@ class CreateClassController
                     $classErrMess = 'Class is required';
                 }
 
-                if (empty($classNameErrMess) && empty($locationErrMess)) {
+                if (empty($classErrMess) && empty($emailErrMess) && empty($studentNameErrMess)) {
                     $this->connection->insertStudent($_POST['studentname'], $_POST['email'], $_POST['class']);
                 }
 
@@ -117,7 +117,7 @@ class CreateClassController
             $emailErrMess = 'Email is invalid';
 
         }else{
-            if(!$this->connection->checkEmailInDB($email, $table)){
+            if($this->connection->checkEmailInDB($email, $table)){
                 $emailErrMess = 'Email is already in use';
             }
         }
