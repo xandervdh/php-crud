@@ -45,4 +45,19 @@ class OverviewController {
 
     }
 
+    public function Delete(){
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            $id = $_POST["id"];
+            $entity = $_GET["page"];
+
+
+
+
+
+        }
+
+    }
+
 }
