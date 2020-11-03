@@ -27,15 +27,16 @@ class OverviewController {
 
         }
 
-        else if ($_GET["page"]=="student"){
+        elseif ($_GET["page"]=="student"){
 
-
+            $overview = $connection->getAllStudents();
 
         }
 
         else {
 
            $overview = $connection->getTeachers();
+
 
         }
 
