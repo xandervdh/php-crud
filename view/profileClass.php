@@ -1,13 +1,13 @@
 <?php require 'includes/header.php'; ?>
     <a class="btn btn-primary" href="http://crud.local/">back to homepage</a>
     <form method="post">
-        <input class="btn btn-primary" type="submit" value="Delete Class">
+        <input class="btn btn-primary" type="submit" name="action" value="Delete">
     </form>
 
 <?php
 echo 'name: ' . $profile->getName() . '<br>';
 echo 'location: ' . $profile->getLocation() . '<br>';
-echo "<a href='http://crud.local/?profile=teacher&user=" . $profile->getTeacher()->getId() . "'>" . $profile->getName() . "</a><br>";
+echo "<a href='http://crud.local/?profile=teacher&user='>" . $profile->getName() . "</a><br>";
 echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
 echo 'students: <br>';
 foreach ($profile->getStudents() as $student){
