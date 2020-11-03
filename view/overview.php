@@ -28,6 +28,8 @@
                 </p>
 
                 <?php foreach ($class->getStudents() as $student) {
+
+                    $connection = new Connection();
                     $id = $connection->getStudentId($student->getName());
 
                     echo "<a href='http://crud.local/?profile=student&user=" . $id['id'] . "'>" . $student->getName() . "</a><br>";

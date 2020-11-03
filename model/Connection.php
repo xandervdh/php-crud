@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "Becode@123";
+        $dbpass = "becode123";
         $db = "crud";
 
         $driverOptions = [
@@ -82,11 +82,12 @@ class Connection {
         $handler->execute();
     }
 
-    public function insertTeacher($name, $email)
+    public function insertTeacher($name, $email, $id)
     {
-        $handler = $this->pdo->prepare('INSERT INTO classes (name, email) VALUES (:teachername, :email)');
-        $handler->bindValue(':classname', $name);
-        $handler->bindValue(':location', $email);
+        $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
+        $handler->bindValue(':teachername', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
         $handler->execute();
     }
 
@@ -131,11 +132,32 @@ class Connection {
 
     public function Delete($id, $table)
     {
-        $handler = $this->pdo->prepare('DELETE FROM :table WHERE id = :id ');
+
+        if($table == "class"){
+            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+            $handler = $this->pdo->prepare('DELETE classes_id FROM students WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+            $handler = $this->pdo->prepare('DELETE classes_id FROM teachers WHERE classes_id = :id ');
+
+            $handler->bindValue(':id', $id);
+            $handler->execute();
+
+        }
+        elseif($table == "student"){
+            $handler = $this->pdo->prepare('DELETE FROM students WHERE id = :id ');
+        }
+        else {
+            $handler = $this->pdo->prepare('DELETE FROM teachers WHERE id = :id ');
+        }
+
         $handler->bindValue(':id', $id);
-        $handler->bindValue(':table', $table);
         $handler->execute();
-        return $handler->fetchAll();
+
     }
 
     public function checkEmailInDB($email, $table)
@@ -148,9 +170,16 @@ class Connection {
         }
 
         $handler->bindValue(':email', $email);
-
         return $handler->execute();
+    }
 
+    public function editProfile()
+    {
+        $handler = $this->pdo->prepare('UPDATE students SET name = :name, email = :email,  WHERE id = :id');
+        $handler->bindValue(':name', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
+        $handler->execute();
     }
 
 }

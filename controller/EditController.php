@@ -1,7 +1,7 @@
 <?php
 
 
-class CreateClassController
+class EditController
 {
     private $connection;
 
@@ -13,13 +13,12 @@ class CreateClassController
         $this->connection = new Connection();
     }
 
-
     public function viewChanger()
     {
-        if ($_GET['create'] == 'class') {
+        if ($_GET['edit'] == 'class') {
             return 'view/createClass.php';
 
-        } elseif ($_GET['create'] == 'student') {
+        } elseif ($_GET['edit'] == 'student') {
             return 'view/createStudent.php';
 
         } else {
@@ -34,7 +33,9 @@ class CreateClassController
         global $classNameErrMess, $locationErrMess, $classErrMess, $studentNameErrMess, $emailErrMess, $teacherNameErrMess;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if ($_GET['create'] == 'class') {
+            if ($_GET['edit'] == 'class') {
+                $class = $this->connection->getClass($_GET['user']);
+
                 if (!empty($_POST['classname'])) {
                     $className = $_POST['classname'];
 
@@ -51,7 +52,9 @@ class CreateClassController
                     $this->connection->insertClass($_POST['classname'], $_POST['location']);
                 }
 
-            } elseif ($_GET['create'] == 'student') {
+            } elseif ($_GET['edit'] == 'student') {
+                $class = $this->connection->getStudentProfile($_GET['user']);
+
                 if (!empty($_POST['studentname'])) {
                     $studentName = $_POST['studentname'];
 
@@ -79,6 +82,8 @@ class CreateClassController
                 }
 
             } else {
+                $class = $this->connection->getTeacherProfile($_GET['user']);
+
                 if (!empty($_POST['teachername'])) {
                     $teacherName = $_POST['teachername'];
 
@@ -122,4 +127,5 @@ class CreateClassController
             }
         }
     }
+
 }
