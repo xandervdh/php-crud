@@ -4,6 +4,7 @@
 class EditController
 {
     private $connection;
+    private $class;
 
     /**
      * CreateClassController constructor.
@@ -16,13 +17,16 @@ class EditController
     public function viewChanger()
     {
         if ($_GET['edit'] == 'class') {
-            return 'view/createClass.php';
+            $this->class = $this->connection->getClass($_GET['user']);
+            return 'view/editClass.php';
 
         } elseif ($_GET['edit'] == 'student') {
-            return 'view/createStudent.php';
+            $this->class = $this->connection->getStudentProfile($_GET['user']);
+            return 'view/editStudent.php';
 
         } else {
-            return 'view/createTeacher.php';
+            $this->class = $this->connection->getTeacherProfile($_GET['user']);
+            return 'view/editTeacher.php';
         }
     }
 
@@ -34,7 +38,7 @@ class EditController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_GET['edit'] == 'class') {
-                $class = $this->connection->getClass($_GET['user']);
+
 
                 if (!empty($_POST['classname'])) {
                     $className = $_POST['classname'];
@@ -53,7 +57,7 @@ class EditController
                 }
 
             } elseif ($_GET['edit'] == 'student') {
-                $class = $this->connection->getStudentProfile($_GET['user']);
+
 
                 if (!empty($_POST['studentname'])) {
                     $studentName = $_POST['studentname'];
@@ -82,7 +86,7 @@ class EditController
                 }
 
             } else {
-                $class = $this->connection->getTeacherProfile($_GET['user']);
+
 
                 if (!empty($_POST['teachername'])) {
                     $teacherName = $_POST['teachername'];
