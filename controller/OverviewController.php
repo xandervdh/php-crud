@@ -33,20 +33,21 @@ class OverviewController {
 
             $classLoader = new ClassLoader();
             $overview = $classLoader->getClasses();
-
+            $this->Delete();
         }
 
         elseif ($_GET["page"]=="student"){
 
             $overview = $this->connection->getAllStudents();
+            $this->Delete();
 
         }
 
         else {
 
            $overview = $this->connection->getTeachers();
-
-
+           $this->Delete();
+           
         }
 
 
