@@ -117,7 +117,8 @@ class CreateClassController
             $emailErrMess = 'Email is invalid';
 
         }else{
-            if($this->connection->checkEmailInDB($email, $table)){
+            $test = $this->connection->checkEmailInDB($email, $table);
+            if($test){
                 $emailErrMess = 'Email is already in use';
             }
         }
