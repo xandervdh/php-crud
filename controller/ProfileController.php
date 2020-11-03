@@ -13,6 +13,7 @@ class ProfileController
             return 'view/profileTeacher.php';
         }
     }
+
     public function render()
     {
         $view = $this->viewChanger();

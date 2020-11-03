@@ -5,6 +5,7 @@
     </form>
 
 <?php
+echo "<a href='http://crud.local/?profile=student&user=" . $profile->getId() . "'>" . $profile->getName() . "</a><br>";
 echo 'name: ' . $profile->getName() . '<br>';
 echo 'location: ' . $profile->getLocation() . '<br>';
 echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
