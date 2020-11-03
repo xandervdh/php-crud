@@ -149,9 +149,16 @@ class Connection {
         }
 
         $handler->bindValue(':email', $email);
-
         return $handler->execute();
+    }
 
+    public function editProfile()
+    {
+        $handler = $this->pdo->prepare('UPDATE students SET name = :name, email = :email,  WHERE id = :id');
+        $handler->bindValue(':name', $name);
+        $handler->bindValue(':email', $email);
+        $handler->bindValue(':id', $id);
+        $handler->execute();
     }
 
 }
