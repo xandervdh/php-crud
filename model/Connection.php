@@ -15,7 +15,7 @@ class Connection
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "Becode@123";
+        $dbpass = "becode123";
         $db = "crud";
 
         $driverOptions = [

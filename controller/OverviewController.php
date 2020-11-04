@@ -28,9 +28,6 @@ class OverviewController {
             $view = 'view/teacherOverview.php';
         }
 
-
-
-
         if($_GET["page"]=="class"){
 
             $this->Delete();
@@ -52,7 +49,6 @@ class OverviewController {
            
         }
 
-
         require $view;
 
     }
@@ -69,7 +65,6 @@ class OverviewController {
            if ($entity =='teacher'){
 
                //if teacher class id is not class id
-
 
 
                 $teacherProfile = $this->connection->getTeacherProfile($this->id);

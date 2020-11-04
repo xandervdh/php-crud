@@ -1,8 +1,8 @@
 <?php require 'includes/header.php'; ?>
 
-<div id="container">
+<div class="container">
 
-    <div id="row">
+    <div class="row">
 
         <a href="http://crud.local/?create=teacher" class='btn btn-primary'>Create new</a>
 
