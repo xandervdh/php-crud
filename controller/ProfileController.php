@@ -36,9 +36,9 @@ class ProfileController
                 if ($class->getId() == $id) {
                     $profile = $class;
                 }
-                $teacher = $this->connection->getTeacher($profile->getId());
-                $students = $this->connection->getStudents($profile->getId());
             }
+            $teacher = $this->connection->getTeacher($profile->getId());
+            $students = $this->connection->getStudents($profile->getId());
         } elseif ($_GET['profile'] == 'student') {
             $this->Delete();
             $profile = $this->connection->getStudentProfile($id);

@@ -2,14 +2,16 @@
 
 include 'view/includes/header.php'
 ?>
+<div class="home">
+    <form action="" method="post">
+        <label for="firstname">Class Name:</label><br>
+        <input type="text" name="classname" value="<?php echo $this->class['name'] ;?>"><br>
+        <span class="text-danger"><?php echo $classNameErrMess ;?></span><br>
+        <label for="email">Location:</label><br>
+        <input type="text" name="location" value="<?php echo $this->class['location'] ;?>"><br>
+        <span class="text-danger"><?php echo $locationErrMess ;?></span><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
 
-<form action="" method="post">
-    <label for="firstname">Class Name:</label>
-    <input type="text" name="classname" value="<?php echo $this->class['name'] ;?>">
-    <span class="text-danger"><?php echo $classNameErrMess ;?></span>
-    <label for="email">Location:</label>
-    <input type="text" name="location" value="<?php echo $this->class['location'] ;?>">
-    <span class="text-danger"><?php echo $locationErrMess ;?></span>
-    <button type="submit">Submit</button>
-</form>
 <?php include 'view/includes/footer.php' ?>
