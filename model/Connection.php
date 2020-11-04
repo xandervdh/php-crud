@@ -76,19 +76,21 @@ class Connection
 
     public function insertStudent($name, $email, $id)
     {
+        $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO students (name, email, classes_id) VALUES (:studentname, :email, :id)');
         $handler->bindValue(':studentname', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $id);
+        $handler->bindValue(':id', $className);
         $handler->execute();
     }
 
     public function insertTeacher($name, $email, $id)
     {
+        $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
         $handler->bindValue(':teachername', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $id);
+        $handler->bindValue(':id', $className);
         $handler->execute();
     }
 
