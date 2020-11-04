@@ -10,7 +10,7 @@ include 'view/includes/header.php'
     <label for="email">Email:</label>
     <input type="text" name="email" value="<?php echo $this->class['email'] ;?>">
     <span class="text-danger"><?php echo $emailErrMess ;?></span>
-    <label for="class">Class ID:</label>
+    <label for="class">Class:</label>
     <input type="text" value="<?php echo $this->class['classes_id'] ;?>" name="class">
     <span class="text-danger"><?php echo $classErrMess ;?></span>
     <button type="submit">Submit</button>
