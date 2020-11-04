@@ -1,12 +1,12 @@
 <?php
 
 
-class CreateClassController
+class CreateController
 {
     private $connection;
 
     /**
-     * CreateClassController constructor.
+     * CreateController constructor.
      */
     public function __construct()
     {
@@ -37,6 +37,10 @@ class CreateClassController
             if ($_GET['create'] == 'class') {
                 if (!empty($_POST['classname'])) {
                     $className = $_POST['classname'];
+                    $classNameById = $this->connection->getClassId($className);
+                    if($this->connection->validateClass($className)) {
+                        $classNameErrMess = 'Class already in use';
+                    }
 
                 } else {
                     $classNameErrMess = 'Class name is required';
@@ -69,6 +73,9 @@ class CreateClassController
 
                 if (!empty($_POST['class'])) {
                     $class = $_POST['class'];
+                    if(!$this->connection->getClassId($class)){
+                        $classErrMess = 'Class does not exist';
+                    }
 
                 } else {
                     $classErrMess = 'Class is required';
@@ -96,6 +103,9 @@ class CreateClassController
 
                 if (!empty($_POST['class'])) {
                     $class = $_POST['class'];
+                    if(!$this->connection->getClassId($class)){
+                        $classErrMess = 'Class does not exist';
+                    }
 
                 } else {
                     $classErrMess = 'Class is required';
