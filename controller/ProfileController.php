@@ -24,6 +24,7 @@ class ProfileController
         $id = $_GET['user'];
 
         if ($_GET['profile'] == 'class') {
+            $this->Delete();
             $classLoader = new ClassLoader();
             $classes = $classLoader->getClasses();
             foreach ($classes as $class) {
@@ -32,20 +33,18 @@ class ProfileController
                 }
                 $teacher = $connection->getTeacher($profile->getId());
                 $students = $connection->getStudents($profile->getId());
-                $this->Delete();
             }
         } elseif ($_GET['profile'] == 'student') {
+            $this->Delete();
             $profile = $connection->getStudentProfile($id);
-
             $teacher = $connection->getTeacher($profile['classes_id']);
             $class = $connection->getClass($profile['classes_id']);
-            $this->Delete();
 
         } else {
+            $this->Delete();
             $profile = $connection->getTeacherProfile($id);
             $students = $connection->getStudents($profile['classes_id']);
             $class = $connection->getClass($profile['classes_id']);
-            $this->Delete();
         }
 
         require $view;
