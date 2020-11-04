@@ -1,6 +1,7 @@
 <?php require 'includes/header.php'; ?>
 
     <div class="container">
+
         <div class="buttonsWrap">
             <a href="http://crud.local/?create=class" class='btn btn-primary'>Create New</a>
             <a class="btn btn-primary" href="http://crud.local/">Back to homepage</a>

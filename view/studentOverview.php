@@ -7,8 +7,6 @@
 </div>
     <div class="row">
 
-
-
         <?php foreach ($this->overview as $student) : ?>
 
             <div class="card col-3">
@@ -38,13 +36,9 @@
                 echo "Teacher: " . "<a href='http://crud.local/?profile=teacher&user=" . $teacher['id'] . "'>" . $teacher['name'] . "</a><br>";
                 ?>
 
-
-
             </div>
 
         <?php endforeach; ?>
-
-
 
     </div>
 
