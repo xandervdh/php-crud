@@ -4,14 +4,18 @@
 
     <div id="row">
 
-        <a href="http://php-crud.local/?page=new" class='btn btn-primary'>Create new</a>
+        <a href="http://crud.local/?page=new" class='btn btn-primary'>Create new</a>
 
         <?php foreach ($this->overview as $student) : ?>
 
-            <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
-            <a href="http://php-crud.local/?page=delete" class='btn btn-primary'>Delete</a>
+            <a href="http://crud.local/?edit=student&user=<?php echo $student['id'] ?>" class='btn btn-primary'>Edit</a>
 
-            <p>Name: <a href="http://crud.local/?profile=teacher&user=<?php echo $student['id'] ?>"><?php echo $student['name'];?></a></p>
+            <form method ="post">
+                <input type="submit" value="delete" name="action" class='btn btn-primary'>
+                <input type="hidden" name="id" value="<?php echo $student['id'] ?>">
+            </form>
+
+            <p>Name: <a href="http://crud.local/?profile=student&user=<?php echo $student['id'] ?>"><?php echo $student['name'];?></a></p>
 
             <p>Email:<?php echo $student['email'];?> </p>
 

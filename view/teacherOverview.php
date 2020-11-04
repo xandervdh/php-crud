@@ -8,7 +8,7 @@
 
         <?php foreach ($this->overview as $teacher) : ?>
 
-            <a href="http://crud.local/?page=edit" class='btn btn-primary'>Edit</a>
+            <a href="http://crud.local/?edit=teacher&user=<?php echo $teacher['id'] ?>" class='btn btn-primary'>Edit</a>
 
             <form method ="post">
                 <input type="submit" value="delete" name="action" class='btn btn-primary'>
