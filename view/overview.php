@@ -1,21 +1,27 @@
 <?php require 'includes/header.php'; ?>
 
-    <div id="container">
-
-        <div id="row">
-
+    <div class="container">
+        <div class="buttonsWrap">
             <a href="http://crud.local/?create=class" class='btn btn-primary'>Create new</a>
+            <a class="btn btn-primary" href="http://crud.local/">back to homepage</a>
+        </div>
+
+        <div class="row">
+
 
             <?php foreach ($this->overview as $class) : ?>
 
                 <div class="card col-3">
 
-                    <a href="http://crud.local/?edit=class&user=<?php echo $class->getId() ?>" class='btn btn-primary'>Edit</a>
+                    <div class="buttonsWrap">
+                        <a href="http://crud.local/?edit=class&user=<?php echo $class->getId() ?>"
+                           class='edit buttons btn btn-primary'>Edit</a>
 
-                    <form method="post">
-                        <input type="submit" value="delete" name="action" class='btn btn-primary'>
-                        <input type="hidden" name="id" value="<?php echo $class->getId() ?>">
-                    </form>
+                        <form method="post">
+                            <input type="submit" value="delete" name="action" class='buttons btn btn-primary'>
+                            <input type="hidden" name="id" value="<?php echo $class->getId() ?>">
+                        </form>
+                    </div>
 
 
                     <p>Name:
@@ -29,22 +35,20 @@
                     </p>
 
                     <p>Student: </br>
-                    <?php foreach ($class->getStudents() as $student) {
+                        <?php foreach ($class->getStudents() as $student) {
 
-                        $connection = new Connection();
-                        $id = $connection->getStudentId($student->getName());
+                            $connection = new Connection();
+                            $id = $connection->getStudentId($student->getName());
 
-                        echo "<a href='http://crud.local/?profile=student&user=" . $id['id'] . "'>" . $student->getName() . "</a><br>";
+                            echo "<a href='http://crud.local/?profile=student&user=" . $id['id'] . "'>" . $student->getName() . "</a><br>";
 
-                    }
-                    ?>
+                        }
+                        ?>
                     </p>
-                    <hr>
 
                 </div>
             <?php endforeach; ?>
 
-            <a class="btn btn-primary" href="http://crud.local/">back to homepage</a>
 
         </div>
 

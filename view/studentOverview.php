@@ -1,22 +1,27 @@
 <?php require 'includes/header.php'; ?>
 
-<div id="container">
+<div class="container">
+<div class="buttonWrapper">
+    <a href="http://crud.local/?create=student" class='buttons btn btn-primary'>Create new</a>
+    <a class="buttons btn btn-primary" href="http://crud.local/">back to homepage</a>
+</div>
+    <div class="row">
 
-    <div id="row">
 
-        <a href="http://crud.local/?create=student" class='btn btn-primary'>Create new</a>
 
         <?php foreach ($this->overview as $student) : ?>
 
             <div class="card col-3">
-
+            <div class="buttonsWrap">
                 <a href="http://crud.local/?edit=student&user=<?php echo $student['id'] ?>"
-                   class='btn btn-primary'>Edit</a>
+                   class='buttons edit btn btn-primary'>Edit</a>
 
                 <form method="post">
-                    <input type="submit" value="delete" name="action" class='btn btn-primary'>
+                    <input type="submit" value="delete" name="action" class='buttons btn btn-primary'>
                     <input type="hidden" name="id" value="<?php echo $student['id'] ?>">
                 </form>
+            </div>
+
 
                 <p>Name:
                     <a href="http://crud.local/?profile=student&user=<?php echo $student['id'] ?>"><?php echo $student['name']; ?></a>
@@ -33,13 +38,13 @@
                 echo "Teacher: " . "<a href='http://crud.local/?profile=teacher&user=" . $teacher['id'] . "'>" . $teacher['name'] . "</a><br>";
                 ?>
 
-                <hr>
+
 
             </div>
 
         <?php endforeach; ?>
 
-        <a class="btn btn-primary" href="http://crud.local/">back to homepage</a>
+
 
     </div>
 
