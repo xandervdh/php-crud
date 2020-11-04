@@ -5,6 +5,7 @@ class EditController
 {
     private $connection;
     private $class;
+    private $className;
 
     /**
      * CreateController constructor.
@@ -22,7 +23,7 @@ class EditController
 
         } elseif ($_GET['edit'] == 'student') {
             $this->class = $this->connection->getStudentProfile($_GET['user']);
-            $className = $this->connection->getNameFromId($this->class['id']);
+            $this->className = $this->connection->getNameFromId($this->class['classes_id']);
             return 'view/editStudent.php';
 
         } else {
