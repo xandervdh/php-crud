@@ -74,13 +74,12 @@ class OverviewController {
 
                 $teacherProfile = $this->connection->getTeacherProfile($this->id);
 
-                if(!isset($teacherProfile['classes_id'])){
+                if(($teacherProfile['classes_id']) !== 0){
                     exit;
                 }
             }
 
             $this->connection->Delete($this->id, $entity);
-
 
         }
 

@@ -14,7 +14,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -134,11 +134,11 @@ class Connection {
     {
 
         if($table == "class"){
-            $handler = $this->pdo->prepare('UPDATE students SET classes_id = null WHERE classes_id = :id ');
+            $handler = $this->pdo->prepare('UPDATE students SET classes_id = 0 WHERE classes_id = :id ');
 
             $handler->bindValue(':id', $id);
             $handler->execute();
-            $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = null WHERE classes_id = :id ');
+            $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = 0 WHERE classes_id = :id ');
 
             $handler->bindValue(':id', $id);
             $handler->execute();
