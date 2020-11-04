@@ -93,7 +93,7 @@ class Connection {
 
     public function getTeacherProfile($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM teachers WHERE :id = id');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM teachers WHERE :id = id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
@@ -108,7 +108,7 @@ class Connection {
 
     public function getStudentProfile($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM students WHERE :id = id');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM students WHERE :id = id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
