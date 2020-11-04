@@ -80,7 +80,7 @@ class Connection
         $handler = $this->pdo->prepare('INSERT INTO students (name, email, classes_id) VALUES (:studentname, :email, :id)');
         $handler->bindValue(':studentname', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $className);
+        $handler->bindValue(':id', $className['id']);
         $handler->execute();
     }
 
@@ -90,7 +90,7 @@ class Connection
         $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
         $handler->bindValue(':teachername', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $className);
+        $handler->bindValue(':id', $className['id']);
         $handler->execute();
     }
 
