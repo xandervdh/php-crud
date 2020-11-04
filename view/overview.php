@@ -4,12 +4,11 @@
 
         <div id="row">
 
-            <a href="http://php-crud.local/?create=class" class='btn btn-primary'>Create new</a>
+            <a href="http://crud.local/?create=class" class='btn btn-primary'>Create new</a>
 
             <?php foreach ($this->overview as $class) : ?>
 
-                <a href="http://php-crud.local/?page=edit" class='btn btn-primary'>Edit</a>
-
+                <a href="http://crud.local/?edit=class&user=<?php echo $class->getId() ?>" class='btn btn-primary'>Edit</a>
 
                 <form method ="post">
                     <input type="submit" value="delete" name="action" class='btn btn-primary'>
@@ -23,8 +22,8 @@
 
                 <p>Location: <?php echo $class->getLocation(); ?> </p>
 
-                <p>Teacher: <a
-                            href="http://crud.local/?profile=teacher&user=<?php echo $class->getId(); ?>"><?php echo $class->getTeacher()->getName(); ?></a>
+                <p>Teacher:
+                    <a href="http://crud.local/?profile=teacher&user=<?php echo $class->getId(); ?>"><?php echo $class->getTeacher()->getName(); ?></a>
                 </p>
 
                 <?php foreach ($class->getStudents() as $student) {
