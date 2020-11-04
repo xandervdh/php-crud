@@ -3,7 +3,7 @@
 <div class="container">
     <div class="buttonsWrap">
         <a href="http://crud.local/?create=teacher" class='buttons btn btn-primary'>Create new</a>
-        <a class="buttons btn btn-primary" href="http://crud.local/">back to homepage</a>
+        <a class="buttons btn btn-primary" href="http://crud.local/">Back to homepage</a>
     </div>
     <div class="row">
 

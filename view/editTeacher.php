@@ -3,6 +3,8 @@
 include 'view/includes/header.php'
 ?>
 <div class="home">
+    <a class="btn btn-primary" href="http://crud.local/">Back to homepage</a>
+
     <form action="" method="post">
         <label for="firstname">Teacher Name:</label><br>
         <input type="text" name="teachername" value="<?php echo $this->class['name'] ;?>"><br>
