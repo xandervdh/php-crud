@@ -7,7 +7,7 @@ class EditController
     private $class;
 
     /**
-     * CreateClassController constructor.
+     * CreateController constructor.
      */
     public function __construct()
     {
@@ -38,7 +38,6 @@ class EditController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_GET['edit'] == 'class') {
-
 
                 if (!empty($_POST['classname'])) {
                     $className = $_POST['classname'];
