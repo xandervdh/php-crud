@@ -27,6 +27,8 @@ class ProfileController
                 if ($class->getId() == $id) {
                     $profile = $class;
                 }
+                $teacher = $connection->getTeacher($profile->getId());
+                $students = $connection->getStudents($profile->getId());
             }
         } elseif ($_GET['profile'] == 'student') {
             $profile = $connection->getStudentProfile($id);
@@ -37,7 +39,7 @@ class ProfileController
         } else {
             $profile = $connection->getTeacherProfile($id);
             $students = $connection->getStudents($profile['classes_id']);
-
+            $class = $connection->getClass($profile['classes_id']);
         }
 
         require $view;
