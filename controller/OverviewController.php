@@ -33,22 +33,22 @@ class OverviewController {
 
         if($_GET["page"]=="class"){
 
+            $this->Delete();
             $classLoader = new ClassLoader();
             $this->overview = $classLoader->getClasses();
-            $this->Delete();
         }
 
         elseif ($_GET["page"]=="student"){
 
-            $this->overview = $this->connection->getAllStudents();
             $this->Delete();
+            $this->overview = $this->connection->getAllStudents();
 
         }
 
         else {
 
+            $this->Delete();
            $this->overview = $this->connection->getTeachers();
-           $this->Delete();
            
         }
 
@@ -74,13 +74,12 @@ class OverviewController {
 
                 $teacherProfile = $this->connection->getTeacherProfile($this->id);
 
-                if(!isset($teacherProfile['classes_id'])){
+                if(($teacherProfile['classes_id']) !== 0){
                     exit;
                 }
             }
 
             $this->connection->Delete($this->id, $entity);
-
 
         }
 
