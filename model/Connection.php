@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-class Connection {
+class Connection
+{
     private PDO $pdo;
 
     public function __construct()
@@ -14,7 +15,7 @@ class Connection {
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "becode123";
+        $dbpass = "Becode@123";
         $db = "crud";
 
         $driverOptions = [
@@ -75,25 +76,27 @@ class Connection {
 
     public function insertStudent($name, $email, $id)
     {
+        $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO students (name, email, classes_id) VALUES (:studentname, :email, :id)');
         $handler->bindValue(':studentname', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $id);
+        $handler->bindValue(':id', $className['id']);
         $handler->execute();
     }
 
     public function insertTeacher($name, $email, $id)
     {
+        $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
         $handler->bindValue(':teachername', $name);
         $handler->bindValue(':email', $email);
-        $handler->bindValue(':id', $id);
+        $handler->bindValue(':id', $className['id']);
         $handler->execute();
     }
 
     public function getTeacherProfile($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM teachers WHERE :id = id');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM teachers WHERE :id = id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
@@ -108,7 +111,7 @@ class Connection {
 
     public function getStudentProfile($id)
     {
-        $handler = $this->pdo->prepare('SELECT name, email, classes_id FROM students WHERE :id = id');
+        $handler = $this->pdo->prepare('SELECT id, name, email, classes_id FROM students WHERE :id = id');
         $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
@@ -132,26 +135,22 @@ class Connection {
 
     public function Delete($id, $table)
     {
-
         if($table == "class"){
-            $handler = $this->pdo->prepare('UPDATE students SET classes_id = null WHERE classes_id = :id ');
-
+            $handler = $this->pdo->prepare('UPDATE students SET classes_id = 0 WHERE classes_id = :id ');
             $handler->bindValue(':id', $id);
             $handler->execute();
-            $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = null WHERE classes_id = :id ');
 
+            $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = 0 WHERE classes_id = :id ');
             $handler->bindValue(':id', $id);
             $handler->execute();
+
             $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
-
             $handler->bindValue(':id', $id);
             $handler->execute();
 
-        }
-        elseif($table == "student"){
+        } elseif ($table == "student") {
             $handler = $this->pdo->prepare('DELETE FROM students WHERE id = :id ');
-        }
-        else {
+        } else {
             $handler = $this->pdo->prepare('DELETE FROM teachers WHERE id = :id ');
         }
 
@@ -162,10 +161,10 @@ class Connection {
 
     public function checkEmailInDB($email, $table)
     {
-        if($table == 'students'){
+        if ($table == 'students') {
             $handler = $this->pdo->prepare('SELECT email FROM students WHERE email = :email');
 
-        } else{
+        } else {
             $handler = $this->pdo->prepare('SELECT email FROM teachers WHERE email = :email');
         }
 
@@ -174,13 +173,29 @@ class Connection {
         return $handler->fetch();
     }
 
-    public function editProfile()
+    public function editProfile($name, $email, $id)
     {
         $handler = $this->pdo->prepare('UPDATE students SET name = :name, email = :email,  WHERE id = :id');
         $handler->bindValue(':name', $name);
         $handler->bindValue(':email', $email);
         $handler->bindValue(':id', $id);
         $handler->execute();
+    }
+
+    public function validateClass($class)
+    {
+        $handler = $this->pdo->prepare('SELECT id FROM classes WHERE id = :class');
+        $handler->bindValue(':class', $class);
+        $handler->execute();
+        return $handler->fetch();
+    }
+
+    public function getNameFromId($id)
+    {
+        $handler = $this->pdo->prepare('SELECT name FROM classes WHERE id = :id');
+        $handler->bindValue(':id', $id);
+        $handler->execute();
+        return $handler->fetch();
     }
 
 }

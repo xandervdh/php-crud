@@ -12,8 +12,8 @@ require 'model/Student.php';
 require 'model/Teacher.php';
 
 if (isset($_GET['create'])) {
-    require 'controller/CreateClassController.php';
-    $controller = new CreateClassController();
+    require 'controller/CreateController.php';
+    $controller = new CreateController();
 } elseif (isset($_GET['profile'])) {
     require 'controller/ProfileController.php';
     $controller = new ProfileController();

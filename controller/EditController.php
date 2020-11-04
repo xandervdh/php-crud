@@ -5,9 +5,10 @@ class EditController
 {
     private $connection;
     private $class;
+    private $className;
 
     /**
-     * CreateClassController constructor.
+     * CreateController constructor.
      */
     public function __construct()
     {
@@ -22,6 +23,7 @@ class EditController
 
         } elseif ($_GET['edit'] == 'student') {
             $this->class = $this->connection->getStudentProfile($_GET['user']);
+            $this->className = $this->connection->getNameFromId($this->class['classes_id']);
             return 'view/editStudent.php';
 
         } else {
@@ -38,7 +40,6 @@ class EditController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_GET['edit'] == 'class') {
-
 
                 if (!empty($_POST['classname'])) {
                     $className = $_POST['classname'];
@@ -57,8 +58,6 @@ class EditController
                 }
 
             } elseif ($_GET['edit'] == 'student') {
-
-
                 if (!empty($_POST['studentname'])) {
                     $studentName = $_POST['studentname'];
 
@@ -86,8 +85,6 @@ class EditController
                 }
 
             } else {
-
-
                 if (!empty($_POST['teachername'])) {
                     $teacherName = $_POST['teachername'];
 
