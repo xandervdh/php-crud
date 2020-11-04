@@ -133,23 +133,16 @@ class Connection
 
     public function Delete($id, $table)
     {
-
-<<<<<<< HEAD
-        if ($table == "class") {
-            $handler = $this->pdo->prepare('UPDATE students SET classes_id = null WHERE classes_id = :id ');
-=======
         if($table == "class"){
             $handler = $this->pdo->prepare('UPDATE students SET classes_id = 0 WHERE classes_id = :id ');
->>>>>>> 76d531c62baabc5663a7fdaab11e47a3b47201b2
-
             $handler->bindValue(':id', $id);
             $handler->execute();
+
             $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = 0 WHERE classes_id = :id ');
-
             $handler->bindValue(':id', $id);
             $handler->execute();
-            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
 
+            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
             $handler->bindValue(':id', $id);
             $handler->execute();
 
