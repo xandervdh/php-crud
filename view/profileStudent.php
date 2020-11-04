@@ -7,8 +7,8 @@
 <?php
 echo 'name: ' . $profile['name'] . '<br>';
 echo 'email: ' . $profile['email'] . '<br>';
-echo 'teacher: ' . $teacher['name'] . '<br>';
-echo 'class: ' . $class['name'] . '<br>';
+echo "Teacher: <a href='http://crud.local/?profile=teacher&user=" . $teacher['id'] . "'>" . $teacher['name'] . "</a><br>";
+echo "Class: <a href='http://crud.local/?profile=class&user=" . $class['id'] . "'>" . $class['name'] . "</a><br>";
 ?>
 
 <?php require 'includes/footer.php';

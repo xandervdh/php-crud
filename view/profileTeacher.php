@@ -7,9 +7,10 @@
 <?php
 echo 'name: ' . $profile['name'] . '<br>';
 echo 'email: ' . $profile['email'] . '<br>';
+echo "<a href='http://crud.local/?profile=class&user=" . $class['id'] . "'>" . $class['name'] . "</a><br>";
 echo 'students: <br>';
 foreach ($students as $student){
-    echo '- ' . $student['name'] . '<br>';
+    echo "<a href='http://crud.local/?profile=student&user=" . $student['id'] . "'>" . $student['name'] . "</a><br>";
 }
 ?>
 

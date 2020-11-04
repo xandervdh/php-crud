@@ -7,11 +7,10 @@
 <?php
 echo 'name: ' . $profile->getName() . '<br>';
 echo 'location: ' . $profile->getLocation() . '<br>';
-echo "<a href='http://crud.local/?profile=teacher&user='>" . $profile->getName() . "</a><br>";
-echo 'teacher: ' . $profile->getTeacher()->getName() . '<br>';
+echo "Teacher: <a href='http://crud.local/?profile=teacher&user=" . $teacher['id'] . "'>" . $profile->getTeacher()->getName() . "</a><br>";
 echo 'students: <br>';
-foreach ($profile->getStudents() as $student){
-    echo '- ' . $student->getname() . '<br>';
+foreach ($students as $student){
+    echo "<a href='http://crud.local/?profile=student&user=" .  $student['id'] . "'>" . $student['name'] . "</a><br>";
 }
 ?>
 
