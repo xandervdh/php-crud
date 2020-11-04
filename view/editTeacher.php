@@ -11,7 +11,7 @@ include 'view/includes/header.php'
     <input type="text" name="email" value="<?php echo $this->class['email'] ;?>">
     <span class="text-danger"><?php echo $emailErrMess ;?></span>
     <label for="class">Class:</label>
-    <input type="text" value="<?php echo $this->class['classes_id'] ;?>" name="class">
+    <input type="text" value="<?php echo $this->class['name'] ;?>" name="class">
     <span class="text-danger"><?php echo $classErrMess ;?></span>
     <button type="submit">Submit</button>
 </form>
