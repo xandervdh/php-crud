@@ -6,6 +6,12 @@ class ProfileController
     private Connection $connection;
     private int $id;
 
+    public function __construct()
+    {
+        $this->connection = new Connection();
+    }
+
+
     public function viewChanger()
     {
         if ($_GET['profile'] == 'class') {
@@ -20,7 +26,6 @@ class ProfileController
     public function render()
     {
         $view = $this->viewChanger();
-        $connection = new Connection();
         $id = $_GET['user'];
 
         if ($_GET['profile'] == 'class') {
@@ -31,20 +36,20 @@ class ProfileController
                 if ($class->getId() == $id) {
                     $profile = $class;
                 }
-                $teacher = $connection->getTeacher($profile->getId());
-                $students = $connection->getStudents($profile->getId());
             }
+            $teacher = $this->connection->getTeacher($profile->getId());
+            $students = $this->connection->getStudents($profile->getId());
         } elseif ($_GET['profile'] == 'student') {
             $this->Delete();
-            $profile = $connection->getStudentProfile($id);
-            $teacher = $connection->getTeacher($profile['classes_id']);
-            $class = $connection->getClass($profile['classes_id']);
+            $profile = $this->connection->getStudentProfile($id);
+            $teacher = $this->connection->getTeacher($profile['classes_id']);
+            $class = $this->connection->getClass($profile['classes_id']);
 
         } else {
             $this->Delete();
-            $profile = $connection->getTeacherProfile($id);
-            $students = $connection->getStudents($profile['classes_id']);
-            $class = $connection->getClass($profile['classes_id']);
+            $profile = $this->connection->getTeacherProfile($id);
+            $students = $this->connection->getStudents($profile['classes_id']);
+            $class = $this->connection->getClass($profile['classes_id']);
         }
 
         require $view;
@@ -54,8 +59,8 @@ class ProfileController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-            $this->id = $_POST["id"];
-            $entity = $_GET["page"];
+            $this->id = intval($_POST["id"]);
+            $entity = $_GET["profile"];
 
             //teacher cannot be removed if he is still assigned to a class
 
@@ -71,8 +76,7 @@ class ProfileController
                     exit;
                 }
             }
-
-            $this->connection->Delete($this->id, $entity);
+                $this->connection->Delete($this->id, $entity);
 
 
         }

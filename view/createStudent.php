@@ -2,17 +2,21 @@
 
 include 'view/includes/header.php'
 ?>
+<div class="home">
+    <a class="btn btn-primary" href="http://crud.local/">Back to homepage</a>
 
-<form action="" method="post">
-    <label for="firstname">Student Name:</label>
-    <input type="text" name="studentname" value="">
-    <span class="text-danger"><?php echo $studentNameErrMess ;?></span>
-    <label for="email">Email:</label>
-    <input type="text" name="email">
-    <span class="text-danger"><?php echo $emailErrMess ;?></span>
-    <label for="class">Class:</label>
-    <input type="text" name="class">
-    <span class="text-danger"><?php echo $classErrMess ;?></span>
-    <button type="submit">Submit</button>
-</form>
+    <form action="" method="post">
+        <label for="firstname">Student Name:</label><br>
+        <input type="text" name="studentname" value=""><br>
+        <span class="text-danger"><?php echo $studentNameErrMess; ?></span><br>
+        <label for="email">Email:</label><br>
+        <input type="text" name="email"><br>
+        <span class="text-danger"><?php echo $emailErrMess; ?></span><br>
+        <label for="class">Class:</label><br>
+        <input type="text" name="class"><br>
+        <span class="text-danger"><?php echo $classErrMess; ?></span><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
 <?php include 'view/includes/footer.php' ?>
