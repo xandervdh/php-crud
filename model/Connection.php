@@ -38,7 +38,7 @@ class Connection
     public function getClassId($name)
     {
         $handler = $this->pdo->prepare('SELECT id FROM classes WHERE name = :name');
-        $handler->bindValue(':name', $name);
+        $handler->bindValue(':name', ucfirst($name));
         $handler->execute();
         return $handler->fetch();
     }
@@ -69,8 +69,8 @@ class Connection
     public function insertClass($name, $location)
     {
         $handler = $this->pdo->prepare('INSERT INTO classes (name, location) VALUES (:classname, :location)');
-        $handler->bindValue(':classname', $name);
-        $handler->bindValue(':location', $location);
+        $handler->bindValue(':classname', ucfirst($name));
+        $handler->bindValue(':location', ucfirst($location));
         $handler->execute();
     }
 
@@ -78,7 +78,7 @@ class Connection
     {
         $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO students (name, email, classes_id) VALUES (:studentname, :email, :id)');
-        $handler->bindValue(':studentname', $name);
+        $handler->bindValue(':studentname', ucfirst($name));
         $handler->bindValue(':email', $email);
         $handler->bindValue(':id', $className['id']);
         $handler->execute();
@@ -88,7 +88,7 @@ class Connection
     {
         $className = $this->getClassId($id);
         $handler = $this->pdo->prepare('INSERT INTO teachers (name, email, classes_id) VALUES (:teachername, :email, :id)');
-        $handler->bindValue(':teachername', $name);
+        $handler->bindValue(':teachername', ucfirst($name));
         $handler->bindValue(':email', $email);
         $handler->bindValue(':id', $className['id']);
         $handler->execute();
@@ -120,7 +120,7 @@ class Connection
     public function getStudentId($name)
     {
         $handler = $this->pdo->prepare('SELECT id FROM students WHERE :name = name');
-        $handler->bindValue(':name', $name);
+        $handler->bindValue(':name', ucfirst($name));
         $handler->execute();
         return $handler->fetch();
     }
@@ -185,7 +185,7 @@ class Connection
     public function validateClass($class)
     {
         $handler = $this->pdo->prepare('SELECT id FROM classes WHERE id = :class');
-        $handler->bindValue(':class', $class);
+        $handler->bindValue(':class', ucfirst($class));
         $handler->execute();
         return $handler->fetch();
     }
