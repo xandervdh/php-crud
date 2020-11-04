@@ -135,15 +135,14 @@ class Connection
     {
         if($table == "class"){
             $handler = $this->pdo->prepare('UPDATE students SET classes_id = 0 WHERE classes_id = :id ');
-
             $handler->bindValue(':id', $id);
             $handler->execute();
+
             $handler = $this->pdo->prepare('UPDATE teachers SET classes_id = 0 WHERE classes_id = :id ');
-
             $handler->bindValue(':id', $id);
             $handler->execute();
-            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
 
+            $handler = $this->pdo->prepare('DELETE FROM classes WHERE id = :id ');
             $handler->bindValue(':id', $id);
             $handler->execute();
 
