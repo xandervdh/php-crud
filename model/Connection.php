@@ -15,7 +15,7 @@ class Connection
     {
         $dbhost = "localhost";
         $dbuser = "becode";
-        $dbpass = "Becode@123";
+        $dbpass = "becode123";
         $db = "crud";
 
         $driverOptions = [
@@ -186,6 +186,14 @@ class Connection
     {
         $handler = $this->pdo->prepare('SELECT id FROM classes WHERE id = :class');
         $handler->bindValue(':class', $class);
+        $handler->execute();
+        return $handler->fetch();
+    }
+
+    public function getNameFromId($id)
+    {
+        $handler = $this->pdo->prepare('SELECT name FROM classes WHERE id = :id');
+        $handler->bindValue(':id', $id);
         $handler->execute();
         return $handler->fetch();
     }

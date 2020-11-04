@@ -22,6 +22,7 @@ class EditController
 
         } elseif ($_GET['edit'] == 'student') {
             $this->class = $this->connection->getStudentProfile($_GET['user']);
+            $className = $this->connection->getNameFromId($this->class['id']);
             return 'view/editStudent.php';
 
         } else {
@@ -56,8 +57,6 @@ class EditController
                 }
 
             } elseif ($_GET['edit'] == 'student') {
-
-
                 if (!empty($_POST['studentname'])) {
                     $studentName = $_POST['studentname'];
 
@@ -85,8 +84,6 @@ class EditController
                 }
 
             } else {
-
-
                 if (!empty($_POST['teachername'])) {
                     $teacherName = $_POST['teachername'];
 
